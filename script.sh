@@ -13,10 +13,20 @@ kill_process(){
 
 #ubuntu should work on it
 
-
-
-
-
+read -p "Enter the process name to kill: " process_name
+    pids=$(pgrep "$process_name")
+    if [ -n "$pids" ]; then
+        for pid in $pids; do
+            kill "$pid"
+            if [ $? -eq 0 ]; then
+                echo "Killed process $pid related to '$process_name'."
+            else
+                echo "Failed to kill process $pid related to '$process_name'."
+            fi
+        done
+    else
+        echo "The process '$process_name' is not running."
+    fi
 }
 
 
