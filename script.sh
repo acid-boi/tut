@@ -2,7 +2,12 @@
 
 check_process(){
 #Yash should work on this
-
+read -p "Enter the process name to check: " process_name
+    if pgrep "$process_name" > /dev/null; then
+        echo "The process '$process_name' is running."
+    else
+        echo "The process '$process_name' is not running."
+    fi
 
 
 
